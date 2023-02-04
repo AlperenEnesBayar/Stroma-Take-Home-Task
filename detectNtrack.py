@@ -1,7 +1,7 @@
 import argparse
 import time
 from pathlib import Path
-
+import os
 import cv2
 import torch
 import torch.backends.cudnn as cudnn
@@ -52,9 +52,7 @@ def bb_intersection_over_union(boxA, boxB):
     return iou
 
 
-def detect():
-    source = 'bnn_data/images/test'
-    weights = 'trained_models/best.pt'
+def detect(source, weights):
     device = '0'
     img_size = 640
     classes = 0, 1
@@ -161,7 +159,6 @@ def detect():
 
                     for s_track in detectInput:
                         iou = bb_intersection_over_union(s_track[0], tlbr)
-                        print(iou)
                         if iou > 0.5:
                             x_coor = int(s_track[0][2] + 6)
                             y_coor = int(s_track[0][1])
@@ -175,11 +172,11 @@ def detect():
                 #         plot_one_box_track(im0, detectInput[i][0][2], detectInput[i][0][1], pred_bbox[i][1])
 
             # Print time (inference + NMS)
-            print(f'{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS')
+            print(f'\r{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS', end='')
 
             # Stream results
             cv2.imshow("Test", im0)
-            cv2.waitKey(1 )  # 1 millisecond
+            cv2.waitKey(1)  # 1 millisecond
 
             # Save results (image with detections)
 
@@ -187,5 +184,11 @@ def detect():
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--weights', type=str, default='trained_models/best.pt', help='model.pt path(s)')
+    parser.add_argument('--source', type=str, default='test.mp4', help='file or folder path '
+                                                                                  'for images')
+    opt = parser.parse_args()
+
     with torch.no_grad():
-        detect()
+        detect(source=opt.source, weights=opt.weights)

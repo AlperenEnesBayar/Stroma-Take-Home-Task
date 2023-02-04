@@ -21,22 +21,20 @@ from models.experimental import attempt_load, End2End
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', type=str, default='trained_models/best.pt', help='weights path')
+    parser.add_argument('--weights', type=str, default='trained_models/best_rt.pt', help='weights path')
     parser.add_argument('--img-size', nargs='+', type=int, default=[640, 640], help='image size')  # height, width
     parser.add_argument('--batch-size', type=int, default=1, help='batch size')
     parser.add_argument('--dynamic', action='store_true', default=False, help='dynamic ONNX axes')
     parser.add_argument('--dynamic-batch', action='store_true', default=False, help='dynamic batch onnx for tensorrt and onnx-runtime')
     parser.add_argument('--grid', action='store_true', default=True, help='export Detect() layer grid')
     parser.add_argument('--end2end', action='store_true', default=True, help='export end2end onnx')
-    parser.add_argument('--max-wh', type=int, default=640, help='None for tensorrt nms, int value for onnx-runtime nms')
+    parser.add_argument('--max-wh', type=int, default=None, help='None for tensorrt nms, int value for onnx-runtime nms')
     parser.add_argument('--topk-all', type=int, default=100, help='topk objects for every images')
-    parser.add_argument('--iou-thres', type=float, default=0.45, help='iou threshold for NMS')
-    parser.add_argument('--conf-thres', type=float, default=0.25, help='conf threshold for NMS')
+    parser.add_argument('--iou-thres', type=float, default=0.5, help='iou threshold for NMS')
+    parser.add_argument('--conf-thres', type=float, default=0.5, help='conf threshold for NMS')
     parser.add_argument('--device', default='cpu', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--simplify', action='store_true', default=False, help='simplify onnx model')
     parser.add_argument('--include-nms', action='store_true', default=False, help='export end2end onnx')
-    parser.add_argument('--fp16', action='store_true', help='CoreML FP16 half-precision export')
-    parser.add_argument('--int8', action='store_true', help='CoreML INT8 quantization')
     opt = parser.parse_args()
     opt.img_size *= 2 if len(opt.img_size) == 1 else 1  # expand
     opt.dynamic = opt.dynamic and not opt.end2end

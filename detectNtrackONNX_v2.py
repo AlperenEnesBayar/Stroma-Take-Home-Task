@@ -137,6 +137,7 @@ for img_p in glob('bnn_data/images/train/*'):
 
     img = img.astype(np.float32)
     outputs = ort_sess.run(None, {'images': img})
+
     predictions = np.squeeze(outputs[0])
 
     obj_conf = predictions[:, 4]
