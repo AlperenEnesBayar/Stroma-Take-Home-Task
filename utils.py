@@ -59,23 +59,30 @@ def instance2Yolov7Label(label_path, output_folder_path, w_img=640, h_img=640):
 
         # Iterating through the json
         for single_annotation in data['annotations']:
-            text_file_name = fileNameGenerator(single_annotation['image_id'], extension='txt')
+            text_file_name = fileNameGenerator(single_annotation['image_id'] - 1, extension='txt')
+
+
             f = open(output_folder_path + "\\" + text_file_name, "a")
-
             id = '0' if single_annotation['category_id'] == 1 else '1'
+            x = int(single_annotation['bbox'][0])
+            y = int(single_annotation['bbox'][1])
+            w = int(single_annotation['bbox'][2])
+            h = int(single_annotation['bbox'][3])
 
-            w = single_annotation['bbox'][2]
-            h = single_annotation['bbox'][3]
-            xcenter = (single_annotation['bbox'][0] + w / 2) / w_img
-            ycenter = (single_annotation['bbox'][1] + h / 2) / w_img
-            w = w / w_img
-            h = h / h_img
 
-            f.write(id + " " +
-                    str(xcenter) + " " +
-                    str(ycenter) + " " +
-                    str(w) + " " +
-                    str(h) + '\n')
+            xcenter = (x + (w / 2))
+            ycenter = (y + (h / 2))
+            xcenter /= w_img
+            ycenter /= w_img
+            w /= w_img
+            h /= w_img
+
+            f.write('{} {:.6} {:.6} {:.6} {:.6}\n'.format(id, xcenter, ycenter, w, h))
+            # f.write(id + " " +
+            #         str(xcenter) + " " +
+            #         str(ycenter) + " " +
+            #         str(w) + " " +
+            #         str(h) + '\n')
             f.close()
 
         for file in glob(output_folder_path + "\\*.txt"):
@@ -92,6 +99,6 @@ def instance2Yolov7Label(label_path, output_folder_path, w_img=640, h_img=640):
 
 def convertYolov7Labels():
     for pa in ['train', 'test', 'val']:
-        instance2Yolov7Label("data/labels/instances_" + pa + ".json", "data/annotations/" + pa)
+        instance2Yolov7Label("labels/instances_" + pa + ".json", "bnn_data/labels/" + pa)
 
 convertYolov7Labels()
