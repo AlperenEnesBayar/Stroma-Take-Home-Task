@@ -22,7 +22,7 @@
 
 ![res](github_imgs/main.png?raw=true "Test Results") 
 
-computer vision, real-time object detection is a very important task that is often a key component in computer vision systems. Applications that use real-time object detection models include video analytics, robotics, autonomous vehicles, multi-object tracking and object counting, medical image analysis, and so on.
+Real-time object detection is a very important task that is often a key component in computer vision systems. Applications that use real-time object detection models include video analytics, robotics, autonomous vehicles, multi-object tracking and object counting, medical image analysis, and so on.
 
 YOLO stands for “You Only Look Once”, it is a popular family of real-time object detection algorithms. The original YOLO object detector was first released in 2016. It was created by Joseph Redmon, Ali Farhadi, and Santosh Divvala. At release, this architecture was much faster than other object detectors and became state-of-the-art for real-time computer vision applications
 
@@ -36,8 +36,13 @@ Here's why:
 * Planned re-parameterized convolution
 * Coarse for auxiliary and fine for lead loss
 
+For the tacking part I use ByteTrack.
 
+A simple, effective, and a generic association method to track objects by associating almost every detection box instead of just the high score ones
 
+BYTE outperforms other association methods like SORT, Deep SORT, and MOTDT by a large margin
+
+ByteTrack is a simple yet effective algorithm for multi-object tracking(MOT). It uses YOLOX, a high-performance object detector, and BYTE for data association. BYTE uses all of the detection results, both low and high detection scores, to enhance the performance of ByteTrack. ByteTrack is robust to occlusion, motion blur, and size changes and performs accurate tracking.
 
 <!-- GETTING STARTED -->
 ## Getting Started
