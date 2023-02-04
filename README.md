@@ -20,7 +20,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![res](github_imgs/ss.jpg?raw=true "Test Results") 
+![res](github_imgs/main.png?raw=true "Test Results") 
 
 computer vision, real-time object detection is a very important task that is often a key component in computer vision systems. Applications that use real-time object detection models include video analytics, robotics, autonomous vehicles, multi-object tracking and object counting, medical image analysis, and so on.
 
@@ -88,7 +88,7 @@ This is an example of how to list things you need to use the software and how to
 ![pr](github_imgs/PR_curve.png?raw=true "PR Curve")
 
 ### Some Test Results
-![res](github_imgs/test_batch0_labels.jpg?raw=true "Test Results")
+![res](github_imgs/test.png?raw=true "Test Results")
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
