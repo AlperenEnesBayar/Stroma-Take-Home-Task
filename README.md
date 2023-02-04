@@ -11,8 +11,6 @@
   <p align="center">
     Bold and Nut detection and tracking process for Stroma TakeHome Task
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
     <br />
     <a href="https://youtu.be/6UJZD3x_8hU">View Demo</a>
   </p>
@@ -22,7 +20,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![res](github_imgs/ss.jpg?raw=true "Test Results") 
 
 computer vision, real-time object detection is a very important task that is often a key component in computer vision systems. Applications that use real-time object detection models include video analytics, robotics, autonomous vehicles, multi-object tracking and object counting, medical image analysis, and so on.
 
@@ -38,8 +36,6 @@ Here's why:
 * Planned re-parameterized convolution
 * Coarse for auxiliary and fine for lead loss
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -97,4 +93,3 @@ This is an example of how to list things you need to use the software and how to
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: github_imgs/ss.jpg
